@@ -1,0 +1,70 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
+
+  node-1:
+    image: ubuntu:22.04
+    container_name: linux-node-1
+    command: sleep infinity
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    volumes:
+      - ./scripts:/scripts
+
+  node-2:
+    image: ubuntu:22.04
+    container_name: linux-node-2
+    command: sleep infinity
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+  node-3:
+    image: ubuntu:22.04
+    container_name: linux-node-3
+    command: sleep infinity
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+  node-4:
+    image: ubuntu:22.04
+    container_name: linux-node-4
+    command: sleep infinity
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+  node-5:
+    image: ubuntu:22.04
+    container_name: linux-node-5
+    command: sleep infinity
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
